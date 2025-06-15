@@ -30,6 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageText = document.getElementById('message-text');
     const actionMenu = document.getElementById('action-menu');
     const actionItems = document.querySelectorAll('.action-item');
+    const gameOverScreen = document.getElementById('game-over-screen');
+    const gameOverText = document.getElementById('game-over-text');
+    const playAgainButton = document.getElementById('play-again-button');
     
     let currentActionIndex = 0;
     let isPlayerTurn = true;
@@ -104,15 +107,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function endGame(winner) {
         gameOver = true;
         actionMenu.style.display = 'none';
-        const message = `${winner}'s heart is full of love!`;
-        typeMessage(message, () => {
-            messageText.innerHTML += '<br>Play Again?';
-            messageText.style.cursor = 'pointer';
-            messageText.addEventListener('click', resetGame, { once: true });
-        });
+        messageText.style.display = 'none';
+        
+        gameOverText.innerHTML = `${winner}'s heart is<br>full of love!`;
+        gameOverScreen.style.display = 'flex';
     }
 
     function resetGame() {
+        gameOverScreen.style.display = 'none';
+
         justin.love = 0;
         liam.love = 0;
         updateHP(justin, 0);
@@ -121,8 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
         isPlayerTurn = true;
         gameOver = false;
         
+        messageText.style.display = 'block';
         actionMenu.style.display = 'block';
-        messageText.style.cursor = 'default';
         
         typeMessage('What will Justin do?');
     }
@@ -136,8 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
         typeMessage(action.message, () => {
             updateHP(liam, action.damage);
             showHeartEffect(liam);
-            liam.spriteElement.classList.add('shake');
-            setTimeout(() => liam.spriteElement.classList.remove('shake'), 500);
+            liam.spriteElement.querySelector('img').classList.add('shake');
+            setTimeout(() => liam.spriteElement.querySelector('img').classList.remove('shake'), 500);
 
             if (!checkWinCondition()) {
                 setTimeout(opponentTurn, 2000);
@@ -153,8 +156,8 @@ document.addEventListener('DOMContentLoaded', () => {
         typeMessage(action.message, () => {
             updateHP(justin, action.damage);
             showHeartEffect(justin);
-            justin.spriteElement.classList.add('shake');
-            setTimeout(() => justin.spriteElement.classList.remove('shake'), 500);
+            justin.spriteElement.querySelector('img').classList.add('shake');
+            setTimeout(() => justin.spriteElement.querySelector('img').classList.remove('shake'), 500);
 
             if (!checkWinCondition()) {
                 isPlayerTurn = true;
@@ -181,8 +184,33 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isPlayerTurn || gameOver) return;
         const selectedAction = playerActions[currentActionIndex];
         playerTurn(selectedAction);
-        justin.spriteElement.classList.add('jump');
-        setTimeout(() => justin.spriteElement.classList.remove('jump'), 500);
+        justin.spriteElement.querySelector('img').classList.add('jump');
+        setTimeout(() => justin.spriteElement.querySelector('img').classList.remove('jump'), 500);
     };
 
     document.getElementById('a-button').addEventListener('click', selectAction);
+    document.getElementById('b-button').addEventListener('click', selectAction); // Both A and B select
+
+    // Keyboard support
+    window.addEventListener('keydown', (e) => {
+        switch (e.key) {
+            case 'ArrowDown':
+                document.getElementById('down-button').click();
+                break;
+            case 'ArrowUp':
+                document.getElementById('up-button').click();
+                break;
+            case 'Enter':
+            case ' ': // Space bar
+                document.getElementById('a-button').click();
+                break;
+        }
+    });
+
+    playAgainButton.addEventListener('click', resetGame);
+
+    // Initial setup
+    updateActionMenu();
+    updateHP(justin, 0);
+    updateHP(liam, 0);
+}); 
