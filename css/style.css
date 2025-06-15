@@ -1,0 +1,258 @@
+body {
+    background-color: #a3d5e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Press Start 2P', cursive;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.gameboy {
+    width: 320px;
+    height: 610px;
+    background-color: #a0a0a0;
+    border-radius: 15px 15px 40px 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.gameboy::before {
+    content: '';
+    position: absolute;
+    top: 90px;
+    left: 20px;
+    width: 50px;
+    height: 3px;
+    background: #888;
+}
+
+.gameboy-screen-container {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.gameboy-screen {
+    background-color: #f0f0f0;
+    height: 280px;
+    border: 2px solid #555;
+    position: relative;
+    overflow: hidden;
+    color: #333;
+    font-size: 14px;
+}
+
+.character-info-container {
+    position: absolute;
+    width: 140px;
+}
+.opponent-info {
+    top: 20px;
+    left: 10px;
+}
+.player-info {
+    top: 105px;
+    right: 10px;
+}
+
+.info-box {
+    background: #fff;
+    border: 2px solid #333;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.name-level {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.hp-bar-container {
+    display: flex;
+    align-items: center;
+}
+
+.hp-label {
+    background-color: #f9d84a;
+    border: 1px solid #333;
+    border-radius: 3px;
+    padding: 0 3px;
+    font-size: 10px;
+    margin-right: 4px;
+}
+
+.hp-bar {
+    flex-grow: 1;
+    height: 10px;
+    background-color: #ccc;
+    border: 1px solid #333;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.hp-fill {
+    width: 0%;
+    height: 100%;
+    background-color: #ff85a2;
+    transition: width 0.5s ease-in-out;
+}
+
+
+.character-sprite {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.character-sprite img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.character-sprite .particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.character-sprite .heart-particle {
+    position: absolute;
+    font-size: 20px;
+    color: #ff85a2;
+    animation: float-up 1s ease-out forwards;
+    opacity: 1;
+}
+
+@keyframes float-up {
+    from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-50px) scale(1.5);
+        opacity: 0;
+    }
+}
+.opponent-sprite {
+    top: 20px;
+    right: 10px;
+}
+.player-sprite {
+    top: 105px;
+    left: 20px;
+}
+
+
+.message-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: #333;
+    color: #f0f0f0;
+    border-top: 4px solid #555;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    font-size: 10px;
+}
+
+.message-box .text {
+    width: 45%;
+    line-height: 1.4;
+}
+
+.action-menu {
+    width: 55%;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.action-item {
+    display: flex;
+    cursor: pointer;
+    padding-bottom: 4px;
+}
+
+.action-item .arrow {
+    width: 12px;
+    margin-right: 8px;
+    text-align: center;
+}
+
+
+.gameboy-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10px;
+}
+
+.d-pad {
+    position: relative;
+    width: 90px;
+    height: 90px;
+}
+
+.d-pad-button {
+    position: absolute;
+    background-color: #333;
+    box-shadow: 0 2px #111;
+    cursor: pointer;
+}
+.d-pad-button:active {
+    background-color: #222;
+    box-shadow: none;
+    transform: translateY(2px);
+}
+.up { width: 30px; height: 30px; top: 0; left: 30px; }
+.right { width: 30px; height: 30px; top: 30px; left: 60px; }
+.down { width: 30px; height: 30px; top: 60px; left: 30px; }
+.left { width: 30px; height: 30px; top: 30px; left: 0; }
+.middle { width: 30px; height: 30px; top: 30px; left: 30px; }
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 4px #5e1111;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Press Start 2P', cursive;
+    color: #333;
+}
+.button:active {
+    box-shadow: none;
+    transform: translateY(4px);
+}
+
+.a-button {
+    background-color: #a93232;
+    margin-left: 10

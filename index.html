@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Father's Day Adventure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="gameboy">
+        <div class="gameboy-screen-container">
+            <div class="gameboy-screen">
+                <!-- Liam's Info (Opponent) -->
+                <div class="character-info-container opponent-info">
+                    <div class="info-box">
+                        <div class="name-level">
+                            <span>LIAM</span>
+                            <span>Lv5</span>
+                        </div>
+                        <div class="hp-bar-container">
+                            <span class="hp-label">❤️</span>
+                            <div class="hp-bar">
+                                <div id="liam-hp" class="hp-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="liam-sprite" class="character-sprite opponent-sprite">
+                    <img src="assets/Liam.png" alt="Liam">
+                    <div class="particles"></div>
+                </div>
+
+                <!-- Justin's Info (Player) -->
+                <div class="character-info-container player-info">
+                    <div class="info-box">
+                        <div class="name-level">
+                            <span>JUSTIN</span>
+                            <span>Lv5</span>
+                        </div>
+                        <div class="hp-bar-container">
+                            <span class="hp-label">❤️</span>
+                            <div class="hp-bar">
+                                <div id="justin-hp" class="hp-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div id="justin-sprite" class="character-sprite player-sprite">
+                    <img src="assets/Justin.png" alt="Justin">
+                    <div class="particles"></div>
+                </div>
+
+                <!-- Message and Actions Box -->
+                <div class="message-box">
+                    <div id="message-text" class="text">What will Justin do?</div>
+                    <div id="action-menu" class="action-menu">
+                        <div class="action-item" data-action="hug">
+                            <span class="arrow">></span>
+                            <span>HUG</span>
+                        </div>
+                        <div class="action-item" data-action="dad-joke">
+                            <span class="arrow" style="visibility: hidden;">></span>
+                            <span>DAD JOKE</span>
+                        </div>
+                        <div class="action-item" data-action="piggyback">
+                           <span class="arrow" style="visibility: hidden;">></span>
+                           <span>PIGGYBACK</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="gameboy-controls">
+            <div class="d-pad">
+                <div id="up-button" class="d-pad-button up"></div>
+                <div id="right-button" class="d-pad-button right"></div>
+                <div id="down-button" class="d-pad-button down"></div>
+                <div id="left-button" class="d-pad-button left"></div>
+                <div class="d-pad-button middle"></div>
+            </div>
+            <div class="action-buttons">
+                <div id="b-button" class="button b-button">B</div>
+                <div id="a-button" class="button a-button">A</di
